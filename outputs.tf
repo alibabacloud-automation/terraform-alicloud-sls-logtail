@@ -48,12 +48,12 @@ output "this_logtail_config_input_detail" {
   value       = concat(alicloud_logtail_config.this.*.input_detail, [""])[0]
 }
 
-output "this_instance_ids" {
-  description = "The instance IDs which create by this module"
+output "this_instance_id" {
+  description = "The Id of instances created by this module"
   value       = module.instances.this_instance_id
 }
 
-output "this_instance_names" {
-  description = "The instance names which create by this module"
+output "this_instance_name" {
+  description =  "The name of instances created by this module"
   value       = module.instances.this_instance_name
 }

@@ -72,7 +72,7 @@ variable "config_log_sample" {
 }
 
 variable "config_name" {
-  description = "The Logtail configuration name. If not set, a default name with prefix `sls-logtail-config-` will be returned."
+  description = "The Logtail configuration name. If not set, a default name with prefix `sls-logtail-module-config-` will be returned."
   type        = string
   default     = ""
 }
@@ -127,13 +127,13 @@ variable "security_groups" {
 }
 
 variable "associate_public_ip_address" {
-  description = "Whether to associate a public ip address with an instance in a VPC."
+  description = "Whether to associate a public ip address with an instance in a VPC. If true, the `internet_max_bandwidth_out` should be greater than 0."
   type        = bool
   default     = false
 }
 
 variable "internet_max_bandwidth_out" {
-  description = "Maximum outgoing bandwidth to the public network, measured in Mbps (Mega bit per second). Value range:  [0, 100]. Default to 10 Mbps."
+  description = "Maximum outgoing bandwidth to the public network, measured in Mbps (Mega bit per second). Value range:  [0, 100]."
   type        = number
   default     = 10
 }
@@ -144,8 +144,8 @@ variable "instance_password" {
   default     = ""
 }
 
-variable "existing_instance_ids" {
-  description = "The ID list of existing ECS instances"
+variable "existing_instance_private_ips" {
+  description = "The private IP list of existing ECS instances used to join log machine group."
   type        = list(string)
   default     = []
 }
