@@ -1,4 +1,4 @@
-Alibaba Cloud SLS Logtail Terraform Module 
+Alibaba Cloud SLS Logtail Terraform Module   
 terraform-alicloud-sls-logtail
 =====================================================================
 
@@ -21,54 +21,56 @@ This module requires Terraform 0.12.
 ## Usage
 
 ```hcl
-locals {
-  config_input_detail = <<EOF
-{
-	"discardUnmatch": false,
-	"enableRawLog": true,
-	"fileEncoding": "gbk",
-	"filePattern": "access.log",
-	"logPath": "/logPath",
-	"logType": "json_log",
-	"maxDepth": 10,
-	"topicFormat": "default"
-}
-EOF
-}
-
 module "logtail" {
-  source                    = "terraform-alicloud-modules/sls-logtail/alicloud"
-  region                    = var.region
-  create_log_service        = true
+  source = "terraform-alicloud-modules/sls-logtail/alicloud"
+  region = var.region
     
   #####
   #SLS#
   #####
-  logstore_name             = module.sls.this_log_store_name
-  project_name              = module.sls.this_log_project_name
+  create_log_service = true
+  logstore_name      = "tf-sls-store"
+  project_name       = "tf-sls-project"
     
   #############
   #log machine#
   #############
+  create_log_service        = true
   log_machine_group_name    = "log_machine_group_name"
   log_machine_identify_type = "ip"
-  log_machine_topic         = ""
+  log_machine_topic         = "tf-module"
     
   ############
   #log config#
   ############
   config_name               = "config_name"
   config_input_type         = "file"
-  config_input_detail       = local.config_input_detail
-  create_instances          = true
+  config_input_detail       = <<EOF
+                              {
+                                  "discardUnmatch": false,
+                                  "enableRawLog": true,
+                                  "fileEncoding": "gbk",
+                                  "filePattern": "access.log",
+                                  "logPath": "/logPath",
+                                  "logType": "json_log",
+                                  "maxDepth": 10,
+                                  "topicFormat": "default"
+                              }
+                              EOF
     
   ##############
   #ecs instance#
   ##############
-  vswitch_id                = "vsw-xxxxxxxxx"
-  number_of_instance        = 1
-  instance_type             = "ecs.g6.large"
-  security_groups           = ["sg-xxxxxxxxxxxxx"]
+  create_instances   = true
+  vswitch_id         = "vsw-xxxxxxxxx"
+  number_of_instance = 1
+  instance_type      = "ecs.g6.large"
+  security_groups    = ["sg-xxxxxxxxxxxxx"]
+  
+  ################################################################
+  #setting existing ecs instance private ip to join machine group#
+  ################################################################
+  existing_instance_private_ips = ["172.16.2.2", "172.16.2.3"]
 }
 
 ```

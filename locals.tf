@@ -7,7 +7,6 @@ EOF
   random_string          = replace(random_uuid.this.result, "-", "")
   log_machine_group_name = "sls-logtail-module-group-${local.random_string}"
   config_name            = "sls-logtail-module-config-${local.random_string}"
-  existing_instance_ips  = length(var.existing_instance_ids) == 0 ? [] : data.alicloud_instances.this.instances.*.private_ip
 }
 
 data "alicloud_account" "this" {}
