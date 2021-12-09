@@ -1,6 +1,5 @@
 Alibaba Cloud SLS Logtail Terraform Module   
 terraform-alicloud-sls-logtail
-=====================================================================
 
 本 Module 用于在阿里云创建日志服务机器组及数据源ECS实例相关资源. 
 
@@ -139,6 +138,7 @@ module "logtail" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.0 |
+| <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | >= 1.56.0 |
 
 作者
 -------
