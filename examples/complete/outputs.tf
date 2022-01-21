@@ -1,3 +1,13 @@
+output "this_instance_id" {
+  description = "The Id of instances created by this module"
+  value       = module.ecs.this_instance_id
+}
+
+output "this_instance_name" {
+  description = "The name of instances created by this module"
+  value       = module.ecs.this_instance_name
+}
+
 output "this_log_project_name" {
   description = "The name of the log project"
   value       = module.logtail.this_log_project_name
@@ -46,14 +56,4 @@ output "this_logtail_config_log_sample" {
 output "this_logtail_config_input_detail" {
   description = "The input detail of the logtail config"
   value       = module.logtail.this_logtail_config_input_detail
-}
-
-output "this_instance_id" {
-  description = "The Id of instances created by this module"
-  value       = module.logtail.this_instance_id
-}
-
-output "this_instance_name" {
-  description = "The name of instances created by this module"
-  value       = module.logtail.this_instance_name
 }
