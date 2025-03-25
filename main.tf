@@ -1,6 +1,7 @@
-// Create the ECS instances to install logtail
+# Create the ECS instances to install logtail
 module "instances" {
-  source = "alibaba/ecs-instance/alicloud"
+  source  = "alibaba/ecs-instance/alicloud"
+  version = "2.12.0"
 
   number_of_instances         = var.create_instance ? var.number_of_instance : 0
   image_id                    = var.image_id
@@ -21,6 +22,7 @@ resource "alicloud_log_machine_group" "this" {
   name          = var.log_machine_group_name == "" ? local.log_machine_group_name : var.log_machine_group_name
   project       = var.project_name
   topic         = var.log_machine_topic
+  identify_type = var.log_machine_identify_type
 }
 
 resource "alicloud_logtail_config" "this" {
@@ -37,6 +39,6 @@ resource "alicloud_logtail_config" "this" {
 resource "alicloud_logtail_attachment" "this" {
   count               = var.create_log_service ? 1 : 0
   project             = var.project_name
-  logtail_config_name = concat(alicloud_logtail_config.this.*.name, [""])[0]
-  machine_group_name  = concat(alicloud_log_machine_group.this.*.name, [""])[0]
+  logtail_config_name = concat(alicloud_logtail_config.this[*].name, [""])[0]
+  machine_group_name  = concat(alicloud_log_machine_group.this[*].name, [""])[0]
 }
