@@ -1,7 +1,7 @@
 locals {
   user_data              = <<EOF
 #!/bin/sh
-wget http://logtail-release-${data.alicloud_regions.this.ids.0}.oss-${data.alicloud_regions.this.ids.0}-internal.aliyuncs.com/linux64/logtail.sh -O logtail.sh; chmod 755 logtail.sh; ./logtail.sh install ${data.alicloud_regions.this.ids.0}
+wget http://logtail-release-${data.alicloud_regions.this.ids[0]}.oss-${data.alicloud_regions.this.ids[0]}-internal.aliyuncs.com/linux64/logtail.sh -O logtail.sh; chmod 755 logtail.sh; ./logtail.sh install ${data.alicloud_regions.this.ids[0]}
 touch /etc/ilogtail/users/${data.alicloud_account.this.id}
 EOF
   random_string          = replace(random_uuid.this.result, "-", "")
