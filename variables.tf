@@ -24,6 +24,30 @@ variable "instance_type" {
   default     = ""
 }
 
+variable "system_disk_category" {
+  description = "The system disk category used to launch one or more ecs instances."
+  type        = string
+  default     = null
+}
+
+variable "system_disk_size" {
+  description = "The system disk size used to launch one or more ecs instances."
+  type        = number
+  default     = null
+}
+
+variable "system_disk_performance_level" {
+  description = "The performance level of the ESSD used as the system disk, Valid values: `PL0`, `PL1`, `PL2`, `PL3`, Default to `PL1`."
+  type        = string
+  default     = null
+}
+
+variable "internet_charge_type" {
+  description = "The internet charge type of instance. Choices are 'PayByTraffic' and 'PayByBandwidth'."
+  type        = string
+  default     = null
+}
+
 variable "use_num_suffix" {
   description = "Always append numerical suffix(like 001, 002 and so on) to instance name and host name, even if number_of_instances is 1."
   type        = bool

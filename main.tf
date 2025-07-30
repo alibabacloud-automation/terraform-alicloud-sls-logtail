@@ -3,17 +3,21 @@ module "instances" {
   source  = "alibaba/ecs-instance/alicloud"
   version = "2.12.0"
 
-  number_of_instances         = var.create_instance ? var.number_of_instance : 0
-  image_id                    = var.image_id
-  instance_type               = var.instance_type
-  use_num_suffix              = var.use_num_suffix
-  security_group_ids          = var.security_groups
-  vswitch_id                  = var.vswitch_id
-  user_data                   = local.user_data
-  password                    = var.instance_password
-  associate_public_ip_address = var.associate_public_ip_address
-  internet_max_bandwidth_out  = var.internet_max_bandwidth_out
-  tags                        = var.tags
+  number_of_instances           = var.create_instance ? var.number_of_instance : 0
+  image_id                      = var.image_id
+  instance_type                 = var.instance_type
+  internet_charge_type          = var.internet_charge_type
+  system_disk_category          = var.system_disk_category
+  system_disk_size              = var.system_disk_size
+  system_disk_performance_level = var.system_disk_performance_level
+  use_num_suffix                = var.use_num_suffix
+  security_group_ids            = var.security_groups
+  vswitch_id                    = var.vswitch_id
+  user_data                     = local.user_data
+  password                      = var.instance_password
+  associate_public_ip_address   = var.associate_public_ip_address
+  internet_max_bandwidth_out    = var.internet_max_bandwidth_out
+  tags                          = var.tags
 }
 
 resource "alicloud_log_machine_group" "this" {
