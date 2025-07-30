@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/compare/v2.0.0...v2.1.0) (2025-07-30)
+
+
+### Features
+
+* support attribute system_disk_category, size, performance_level and internet_charge_type ([5d1b40b](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/commit/5d1b40b82af0235a80fe3640c26487fac22349f2))
+
 ## 2.1.0 (Unreleased)
 ## 2.0.0 (March 25, 2025)
 
