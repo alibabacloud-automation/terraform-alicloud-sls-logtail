@@ -1,15 +1,20 @@
+provider "alicloud" {
+  region = "cn-zhangjiakou"
+}
+
 data "alicloud_zones" "default" {
 }
 
 data "alicloud_instance_types" "this" {
   cpu_core_count       = 2
   memory_size          = 8
-  instance_type_family = "ecs.g6"
+  instance_type_family = "ecs.g9i"
   availability_zone    = data.alicloud_zones.default.zones[0].id
 }
 
 data "alicloud_images" "ubuntu" {
-  name_regex = "^ubuntu_18.*64"
+  most_recent   = true
+  instance_type = data.alicloud_instance_types.this.instance_types[0].id
 }
 
 # Create a new vpc used to create ecs instance
@@ -28,8 +33,9 @@ module "sg" {
   source  = "alibaba/security-group/alicloud"
   version = "~> 2.4"
 
-  vpc_id              = module.vpc.this_vpc_id
-  ingress_cidr_blocks = ["0.0.0.0/0"]
+  vpc_id = module.vpc.this_vpc_id
+  # ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_cidr_blocks = ["172.16.0.0/21"]
   ingress_rules       = ["all-all"]
 }
 
@@ -49,6 +55,7 @@ module "ecs" {
   number_of_instance          = 1
   image_id                    = data.alicloud_images.ubuntu.ids[0]
   instance_type               = data.alicloud_instance_types.this.ids[0]
+  system_disk_category        = "cloud_essd"
   use_num_suffix              = true
   security_groups             = [module.sg.this_security_group_id]
   vswitch_id                  = module.vpc.this_vswitch_ids[0]
