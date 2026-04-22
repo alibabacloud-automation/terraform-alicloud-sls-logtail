@@ -1,3 +1,14 @@
+## [3.0.0](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/compare/v2.1.0...v3.0.0) (2026-04-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* add provider version constraint for aliyun/alicloud
+
+### Features
+
+* add provider version constraint for aliyun/alicloud ([7303fbb](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/commit/7303fbbf55e45585a4fd3c71fab3c37160dd64d6))
+
 ## [2.1.0](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/compare/v2.0.0...v2.1.0) (2025-07-30)
 
 
