@@ -20,7 +20,7 @@ data "alicloud_images" "ubuntu" {
 # Create a new vpc used to create ecs instance
 module "vpc" {
   source  = "alibaba/vpc/alicloud"
-  version = "~> 1.11"
+  version = "2.0.0"
 
   create             = true
   vpc_cidr           = "172.16.0.0/16"
@@ -31,7 +31,7 @@ module "vpc" {
 # Create a new security group used to create ecs instance
 module "sg" {
   source  = "alibaba/security-group/alicloud"
-  version = "~> 2.4"
+  version = "3.0.0"
 
   vpc_id = module.vpc.this_vpc_id
   # ingress_cidr_blocks = ["0.0.0.0/0"]
@@ -42,7 +42,7 @@ module "sg" {
 # Create log service by sls module
 module "sls" {
   source  = "terraform-alicloud-modules/sls/alicloud"
-  version = "~> 1.2"
+  version = "2.0.0"
 }
 
 #ecs-instance

@@ -1,7 +1,7 @@
 # Create the ECS instances to install logtail
 module "instances" {
   source  = "alibaba/ecs-instance/alicloud"
-  version = "2.12.0"
+  version = "3.0.0"
 
   number_of_instances           = var.create_instance ? var.number_of_instance : 0
   image_id                      = var.image_id
