@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/compare/v3.0.0...v3.0.1) (2026-04-22)
+
+
+### Bug Fixes
+
+* update version of the dependency module ([3bbd533](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/commit/3bbd533da0177ef31e61487961ca16d8ea55fd00))
+
 ## [3.0.0](https://github.com/alibabacloud-automation/terraform-alicloud-sls-logtail/compare/v2.1.0...v3.0.0) (2026-04-22)
 
 
