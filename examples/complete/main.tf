@@ -14,6 +14,7 @@ data "alicloud_instance_types" "this" {
 
 data "alicloud_images" "ubuntu" {
   most_recent   = true
+  owners        = "system"
   instance_type = data.alicloud_instance_types.this.instance_types[0].id
 }
 
